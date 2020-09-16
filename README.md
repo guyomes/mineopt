@@ -17,10 +17,12 @@ The processing skills are used to compute the processing efficiency. For
 the material `Veldspar`, of type `Common', the base quantity of materials processed 
 is given in the file `data/base_yield.json`, and it is multiplied by the coefficient:
 
+<p align="center">
 <img src=
-"https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+0.3+%2B+0.3%280.1+s_%7BBasic%7D+%2B+0.05+%28s_%7BAdvanced%7D%2B%5Cdelta_%7BAdvanced%7D+%29%2B+0.05+s_%7BExpert%7D%29+%0A" 
+"https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+0.3+%2B+0.3%5Cleft%280.1+s_%7BBasic%7D+%2B+0.05+%28s_%7BAdvanced%7D%2B%5Cdelta_%7BAdvanced%7D+%29%2B+0.05+s_%7BExpert%7D%29+%5Cright%0A" 
 alt="0.3 + 0.3(0.1 s_{Basic} + 0.05 (s_{Advanced}+\delta_{Advanced} )+ 0.05 s_{Expert}) 
 ">
+</p>
 
 where
 <img src= "https://render.githubusercontent.com/render/math?math=%5Ctextstyle+s_%7BBasic%7D" alt="s_{Basic}">,
