@@ -224,15 +224,20 @@ function update_quantity(element) {
 
 function update_target(element) {
     selected = element;
-    if(selected) {
+    if(selected && selected.value >= 0) {
         for(let i = 0; i < processed.length; i++) {
             var num = targets_list[element.value].resources[processed[i]];
             var type = targets_list[element.value].type;
             document.getElementById(processed[i]+"-target").value = Math.round(num * quantity * target_rate[type]);
             update_subjectTo_bnds(i);
         }
-        solve();
+    } else {
+        for(let i = 0; i < processed.length; i++) {
+            document.getElementById(processed[i]+"-target").value = "";
+            update_subjectTo_bnds(i);
+        }
     }
+    solve();
 }
 
 function update_processed(num) {
