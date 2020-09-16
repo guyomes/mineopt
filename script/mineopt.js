@@ -14,6 +14,7 @@ glpk.onerror = (err) => {
 };
 glpk.onmessage = (evt) => {
     if(evt.data.result) {
+        //console.log(evt.data);
         var round_trips = 0;
         for(let i = 0; i < raw.length; i++) {
             var num = evt.data.result.vars[raw[i]];
@@ -34,7 +35,6 @@ glpk.onmessage = (evt) => {
         } else {
             document.getElementById("Time").value = "";
         }
-        //console.log(evt.data);
     }
 };
 var targets_list = null;
@@ -129,12 +129,14 @@ var quantity = 1;
 
 async function fill_targets() {
     targets_list = await fetch("/mineopt/data/targets.json").then(response => response.json());
-    var targets_select = document.getElementById('Targets_list');
+    document.getElementById('Targets_list').selectedIndex = 0;
+
     for(i = 0; i < targets_list.length; i++) {
         var option = document.createElement('option');
-        option.text = targets_list[i].name + " (" + targets_list[i].type + ")";
+        var optgroup = document.getElementById(targets_list[i].type);
+        option.text = targets_list[i].name;
         option.value = i;
-        targets_select.add(option);
+        optgroup.appendChild(option);
     }
 }
 
@@ -150,6 +152,7 @@ async function init_problem() {
         "vars": [],
       },
       "subjectTo": [],
+      "bounds": [],
       "options": {
         "msglev": 0
       }
@@ -167,24 +170,29 @@ async function init_problem() {
     }
     for(let i=0; i < raw.length; i++) {
         problem.objective.vars.push({"name": raw[i], "coef": 1});
-        problem.subjectTo.push({
+        problem.bounds.push({
             "name": raw[i],
-            "vars": [{"name": raw[i], "coef": 1}],
-            "bnds": {"type": 2, "lb": 0}
+            "type": 2,
+            "lb": 0
         });
     }
 }
 
 function update_production(element, type, level) {
+    element.setAttribute("value", element.value);
     skills[type][level] = element.value;
     target_rate[type] = (150 - skills[type]["Basic"] * 6
                              - skills[type]["Advanced"] * 4
                              - skills[type]["Expert"])
                         / 150;
-    update_target(selected);
+    if(selected && (selected.value >= 0)) {
+        update_target(selected);
+    }
+    backup_skills();
 }
 
 function update_skills(element, type, level) {
+    element.setAttribute("value", element.value);
     skills[type][level] = element.value;
     for( let i = 0; i < distribution[type].length; i++) {
         rate[distribution[type][i]] =
@@ -196,17 +204,22 @@ function update_skills(element, type, level) {
     }
     update_subjectTo_coef();
     solve();
+    backup_skills();
 }
 
 function update_time(element) {
+    element.setAttribute("value", element.value);
     time = element.value;
     solve();
+    backup_skills();
 }
 
 function update_capacity(element) {
+    element.setAttribute("value", element.value);
     capacity = element.value;
     update_subjectTo_coef();
     solve();
+    backup_skills();
 }
 
 function update_subjectTo_coef() {
@@ -218,8 +231,15 @@ function update_subjectTo_coef() {
 }
 
 function update_quantity(element) {
-    quantity = element.value;
-    update_target(selected);
+    var num = element.value == "" ? 1 : element.value;
+    var ratio = num/quantity;
+    quantity = num;
+    for(let i = 0; i < processed.length; i++) {
+        var num = Math.round(document.getElementById(processed[i]+"-target").value * ratio);
+        document.getElementById(processed[i]+"-target").value = num;
+        update_subjectTo_bnds(i);
+    }
+    solve();
 }
 
 function update_target(element) {
@@ -241,6 +261,8 @@ function update_target(element) {
 }
 
 function update_processed(num) {
+    document.getElementById('Targets_list').selectedIndex = 0;
+    selected = null;
     update_subjectTo_bnds(num);
     solve();
 }
@@ -256,15 +278,28 @@ function update(element) {
 }
 
 function solve() {
-    //console.log(test);
-    //glpk.postMessage(test);
     //console.log(problem);
     glpk.postMessage(problem);
 }
 
+function backup_skills() {
+    localStorage.skills = document.getElementById("Skills").innerHTML;
+}
+
+function restore_skills() {
+    if(localStorage.skills) {
+        var form = document.getElementById("Skills")
+        var inputs = form.getElementsByTagName("input");
+        form.innerHTML = localStorage.skills;
+        for(let i = 0; i < inputs.length; i++) {
+            inputs[i].oninput();
+        }
+    }
+}
+
 function init() {
     fill_targets();
-    init_problem();
+    init_problem().then( () => restore_skills());
 }
 
 

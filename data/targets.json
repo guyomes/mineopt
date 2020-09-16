@@ -12,6 +12,20 @@
       "Megacyte":        0,
       "Morphite":        0
     }
+  },
+  {
+    "name": "Dummy",
+    "type": "Cruiser",
+    "resources": {
+      "Tritanium": 925214,
+      "Pyerite":    966006,
+      "Mexallon":   331332,
+      "Isogen":      49862,
+      "Nocxium":     16247,
+      "Zydrine":      5091,
+      "Megacyte":        0,
+      "Morphite":        0
+    }
   }
 ]
 

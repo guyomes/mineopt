@@ -7,8 +7,8 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="script/mineopt.js"></script>
+
         <style>
             /* Insert slash in gutter between cells */
             .slash:before {
@@ -22,69 +22,60 @@
         <div class="row">
             <h1 class="col-12 col-md-5 text-center"> Mine Optimizer </h1>
         </div>
-        <form>
+        <form id="Skills">
           <div class="form-row">
-            <div class="col-2 col-md-1">
+            <div class="col-3 col-md-1">
             </div>
-            <div class="col-2 col-md-1 text-center">
+            <div class="col-3 col-md-1 text-center">
                 <label>Basic</label>
             </div>
             <div class="col-3 col-md-1 text-center">
                 <label>Advanced</label>
             </div>
-            <div class="col-2 col-md-1 text-center">
-                <label>Expert</label>
-            </div>
             <div class="col-3 col-md-1 text-center">
-                <label>Cargo</label>
+                <label>Expert</label>
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Common</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm small-input" oninput="update_skills(this, 'Common', 'Basic')">
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm small-input" min="0" max="5" oninput="update_skills(this, 'Common', 'Basic')">
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Common', 'Advanced')">
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Common', 'Advanced')">
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Common', 'Expert')">
-            </div>
-            <div class="col-3 col-md-1 text-center">
-                <label>Capacity</label>
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Common', 'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Uncommon</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Uncommon', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Uncommon', 'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Uncommon', 'Expert')">
-            </div>
             <div class="col-3 col-md-1">
-              <input type="number" class="form-control form-control-sm" placeholder="m³" oninput="update_capacity(this)">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Uncommon', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Uncommon', 'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Uncommon', 'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Special</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Special', 'Basic')">
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Special', 'Basic')">
             </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Special', 'Advanced')">
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Special', 'Advanced')">
             </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Special', 'Expert')">
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Special', 'Expert')">
             </div>
             <div class="col-3 col-md-0">
             </div>
@@ -93,130 +84,127 @@
             <div class="col-3 col-md-1 text-right">
                 <label>Rare</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Rare', 'Basic')">
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Rare', 'Basic')">
             </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Rare', 'Advanced')">
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Rare', 'Advanced')">
             </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Rare', 'Expert')">
-            </div>
-            <div class="col-3 col-md-1 text-center">
-                <label>Round trip</label>
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Rare', 'Expert')">
             </div>
           </div>
           <div class="form-row mb-3">
             <div class="col-3 col-md-1 text-right">
                 <label>Precious</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Precious', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Precious', 'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_skills(this, 'Precious', 'Expert')">
-            </div>
             <div class="col-3 col-md-1">
-              <input type="number" class="form-control form-control-sm" placeholder="minutes" oninput="update_time(this)">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Precious', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Precious', 'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_skills(this, 'Precious', 'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Frigates</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Frigates', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Frigates',  'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Frigates',  'Expert')">
-            </div>
             <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Frigates', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Frigates',  'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Frigates',  'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Destroyer</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Destroyer', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Destroyer',  'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Destroyer',  'Expert')">
-            </div>
             <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Destroyer', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Destroyer',  'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Destroyer',  'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Cruiser</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Cruiser', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Cruiser',  'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Cruiser',  'Expert')">
-            </div>
             <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Cruiser', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Cruiser',  'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Cruiser',  'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Battlecruiser</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Battlecruiser', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Battlecruiser',  'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Battlecruiser',  'Expert')">
-            </div>
             <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Battlecruiser', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Battlecruiser',  'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Battlecruiser',  'Expert')">
             </div>
           </div>
           <div class="form-row">
             <div class="col-3 col-md-1 text-right">
                 <label>Battleship</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Battleship', 'Basic')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Battleship',  'Advanced')">
-            </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Battleship',  'Expert')">
-            </div>
             <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Battleship', 'Basic')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Battleship',  'Advanced')">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Battleship',  'Expert')">
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row mb-3">
             <div class="col-3 col-md-1 text-right">
                 <label>Industrial</label>
             </div>
-            <div class="col-2 col-md-1">
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Industrial', 'Basic')">
+            <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Industrial', 'Basic')">
             </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                                       
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Industrial',  'Advanced')">
+            <div class="col-3 col-md-1">                                                                                       
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Industrial',  'Advanced')">
             </div>                                                                                                           
-            <div class="col-2 col-md-1">                                                                          
-              <input type="number" class="form-control form-control-sm" oninput="update_production(this, 'Industrial',  'Expert')">
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" min="0" max="5" oninput="update_production(this, 'Industrial',  'Expert')">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-3 col-md-1 text-right">
+                <label>Cargo capacity</label>
             </div>
             <div class="col-3 col-md-1">
+              <input type="number" class="form-control form-control-sm" placeholder="m³" oninput="update_capacity(this)">
+            </div>                                                                                                           
+            <div class="col-3 col-md-1 text-right">
+                <label>Round trip time</label>
+            </div>                                                                                                           
+            <div class="col-3 col-md-1">                                                                          
+              <input type="number" class="form-control form-control-sm" placeholder="minutes" oninput="update_time(this)">
             </div>
           </div>
         </form>
@@ -229,11 +217,18 @@
             <div class="form-row mb-3">
                 <div class="col-8 col-md-3">
                     <select class="custom-select form-control" id="Targets_list" onchange="update_target(this);">
-                        <option selected value=-1>Choose target ...</option>
+                        <option value="" disabled selected hidden>Choose target...</option>
+                        <option selected value="-1">None</option>
+                        <optgroup label="Frigates" id="Frigates"></optgroup>
+                        <optgroup label="Destroyer" id="Destroyer"></optgroup>
+                        <optgroup label="Cruiser" id="Cruiser"></optgroup>
+                        <optgroup label="Battlecruiser" id="Battlecruiser"></optgroup>
+                        <optgroup label="Battleship" id="Battleship"></optgroup>
+                        <optgroup label="Industrial" id="Industrial"></optgroup>
                     </select>
                 </div>
                 <div class="col-4 col-md-2">
-                    <input class="form-control" type="number" placeholder="Quantity" oninput="update_quantity(this);">
+                    <input class="form-control" type="number" min="1" placeholder="Quantity" oninput="update_quantity(this);">
                 </div>
             </div>
 
