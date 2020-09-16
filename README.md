@@ -6,7 +6,7 @@ result form. The computation is performed each time a field is modified and
 the result is updated accordingly in real time.
 
 
-# Skills form
+# Skill form
 
 The first form lets you fill your processing and manufacturing
 stats. It also lets you enter the maximal volume of materials that your
@@ -56,14 +56,14 @@ where
 are the skill points to process a ship of the corresponding type. The
 result is used for the lower bounds in the linear optimization problem.
 
-# Ships form
+# Ship form
 
 The ship form lets you choose the ship you want to build, and the desired
 quantity. The right column will be filled with the corresponding cost, and
 the left column allows you to input the materials that you already have.
 The costs in the right column can also be edited freely.
 
-# Results form
+# Result form
 The field in this form are read only. They display the total number of trip
 and time to collect all the raw materials necessary to reach the desired
 quantities of processed materials. These fields are updated each time
