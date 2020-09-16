@@ -14,7 +14,7 @@ cargo can take, as well as the time to mine one batch of material.
 
 ## Processing skills
 The processing skills are used to compute the processing efficiency. For
-the material `Veldspar`, of type `Common', the base quantity of materials processed 
+the material `Veldspar`, of type `Common`, the base quantity of materials processed 
 is given in the file `data/base_yield.json`, and it is multiplied by the coefficient:
 
 <p align="center">
