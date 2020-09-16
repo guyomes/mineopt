@@ -19,7 +19,7 @@ is given in the file `data/base_yield.json`, and it is multiplied by the coeffic
 
 <p align="center">
 <img src=
-"https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+0.3+%2B+0.3%5Cleft%280.1+s_%7BBasic%7D+%2B+0.05+%28s_%7BAdvanced%7D%2B%5Cdelta_%7BAdvanced%7D+%29%2B+0.05+s_%7BExpert%7D%29+%5Cright%0A" 
+"https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+0.3+%2B+0.3%5Cleft%5B0.1+s_%7BBasic%7D+%2B+0.05+%28s_%7BAdvanced%7D%2B%5Cdelta_%7BAdvanced%7D+%29%2B+0.05+s_%7BExpert%7D%5Cright%5D" 
 alt="0.3 + 0.3(0.1 s_{Basic} + 0.05 (s_{Advanced}+\delta_{Advanced} )+ 0.05 s_{Expert}) 
 ">
 </p>
