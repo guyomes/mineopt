@@ -224,7 +224,7 @@ function update_quantity(element) {
 
 function update_target(element) {
     selected = element;
-    if(selected && selected.value >= 0) {
+    if(selected && (selected.value >= 0)) {
         for(let i = 0; i < processed.length; i++) {
             var num = targets_list[element.value].resources[processed[i]];
             var type = targets_list[element.value].type;
