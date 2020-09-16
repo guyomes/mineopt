@@ -41,10 +41,11 @@ materials.
 The manufacturing skills are used to compute the cost reduction to build a
 ship. The base cost of the ships is given in the file `data/targets.json`,
 and is multiplied by the coefficient:
-
-<img style="display: block; margin: auto;" src=
+<center>
+<img src=
 "https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+1+-+%5Cfrac%7B6+s_%7BBasic%7D+-+4+s_%7BAdvanced%7D+-+s_%7BExpert%7D%7D%7B150%7D" 
 alt="1 - \frac{6 s_{Basic} - 4 s_{Advanced} - s_{Expert}}{150}">
+</center>
 
 where
 <img src= "https://render.githubusercontent.com/render/math?math=%5Ctextstyle+s_%7BBasic%7D" alt="s_{Basic}">,
