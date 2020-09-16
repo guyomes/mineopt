@@ -215,7 +215,7 @@
 
         <form>
             <div class="form-row mb-3">
-                <div class="col-8 col-md-3">
+                <div class="col-8 col-md-3 offset-md 1">
                     <select class="custom-select form-control" id="Targets_list" onchange="update_target(this);">
                         <option value="" disabled selected hidden>Choose target...</option>
                         <option selected value="-1">None</option>
@@ -227,7 +227,7 @@
                         <optgroup label="Industrial" id="Industrial"></optgroup>
                     </select>
                 </div>
-                <div class="col-4 col-md-2">
+                <div class="col-4 col-md-1">
                     <input class="form-control" type="number" min="1" placeholder="Quantity" oninput="update_quantity(this);">
                 </div>
             </div>
