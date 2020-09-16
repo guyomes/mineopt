@@ -30,7 +30,7 @@ glpk.onmessage = (evt) => {
         } else {
             document.getElementById("Total").value = "";
         }
-        if(time > 0) {
+        if(round_trips * time > 0) {
             document.getElementById("Time").value = round_trips * time;
         } else {
             document.getElementById("Time").value = "";
