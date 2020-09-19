@@ -14,8 +14,8 @@
     }
   },
   {
-    "name": "Dummy",
-    "type": "Cruiser",
+    "name": "Garmur",
+    "type": "Frigate",
     "resources": {
       "Tritanium": 925214,
       "Pyerite":    966006,
