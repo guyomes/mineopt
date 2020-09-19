@@ -19,14 +19,14 @@
     "type": "Frigate",
     "material_efficiency": 150,
     "resources": {
-      "Tritanium": 925214,
-      "Pyerite":    966006,
-      "Mexallon":   331332,
-      "Isogen":      49862,
-      "Nocxium":     16247,
-      "Zydrine":      5091,
-      "Megacyte":        0,
-      "Morphite":        0
+      "Tritanium": 20045004,
+      "Pyerite":    6009792,
+      "Mexallon":   1971438,
+      "Isogen":      292482,
+      "Nocxium":      66446,
+      "Zydrine":          0,
+      "Megacyte":         0,
+      "Morphite":         0
     }
   }
 ]
