@@ -3,8 +3,8 @@ required to get the materials necessary to build a given ship.
 
 The page is divided in three forms: the skills, the ship target and the
 result form. The computation is performed each time a field is modified and
-the result is updated accordingly in real time.
-
+the result is updated accordingly in real time. The forms are saved in the
+browser using the `window.localStorage` property.
 
 # Skill form
 
