@@ -89,7 +89,7 @@ var skills = {
     "Special": {"Basic": 0, "Advanced": 0, "Expert": 0},
     "Rare": {"Basic": 0, "Advanced": 0, "Expert": 0},
     "Precious": {"Basic": 0, "Advanced": 0, "Expert": 0},
-    "Frigates": {"Basic": 0, "Advanced": 0, "Expert": 0},
+    "Frigate": {"Basic": 0, "Advanced": 0, "Expert": 0},
     "Destroyer": {"Basic": 0, "Advanced": 0, "Expert": 0},
     "Cruiser": {"Basic": 0, "Advanced": 0, "Expert": 0},
     "Battlecruiser": {"Basic": 0, "Advanced": 0, "Expert": 0},
@@ -117,7 +117,7 @@ var rate = {
 }
 
 var target_rate = {
-    "Frigates": 1,
+    "Frigate": 1,
     "Destroyer": 1,
     "Cruiser": 1,
     "Battlecruiser": 1,
@@ -247,8 +247,9 @@ function update_target(element) {
     if(selected && (selected.value >= 0)) {
         for(let i = 0; i < processed.length; i++) {
             var num = targets_list[element.value].resources[processed[i]];
+            var mat_eff = targets_list[element.value].material_efficiency;
             var type = targets_list[element.value].type;
-            document.getElementById(processed[i]+"-target").value = Math.round(num * quantity * target_rate[type]);
+            document.getElementById(processed[i]+"-target").value = Math.round(num * quantity * target_rate[type] * 150/mat_eff);
             update_subjectTo_bnds(i);
         }
     } else {
