@@ -2,6 +2,7 @@
   {
     "name": "Retriever",
     "type": "Industrial",
+    "material_efficiency": 150,
     "resources": {
       "Tritanium": 3925214,
       "Pyerite":    966006,
@@ -16,6 +17,7 @@
   {
     "name": "Garmur",
     "type": "Frigate",
+    "material_efficiency": 150,
     "resources": {
       "Tritanium": 925214,
       "Pyerite":    966006,
