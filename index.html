@@ -18,7 +18,7 @@
             }
         </style>
     </head>
-    <body onload="init();">
+    <body onpageshow="init();">
         <div class="row">
             <h1 class="col-12 col-md-5 text-center"> Mine Optimizer </h1>
         </div>
@@ -213,11 +213,11 @@
             <hr/>
         </div>
 
-        <form>
+        <form id="Ships">
             <div class="form-row mb-3">
-                <div class="col-8 col-md-3 offset-md-1">
-                    <select class="custom-select form-control" id="Targets_list" onchange="update_target(this);">
-                        <option value="" disabled selected hidden>Choose target...</option>
+                <div class="col-7 offset-1 col-md-3">
+                    <select class="custom-select form-control" id="Ships_list" onchange="update_ship(this);">
+                        <option value="" disabled selected hidden>Choose ship...</option>
                         <option selected value="-1">None</option>
                         <optgroup label="Frigates" id="Frigate"></optgroup>
                         <optgroup label="Destroyers" id="Destroyer"></optgroup>
@@ -228,96 +228,98 @@
                     </select>
                 </div>
                 <div class="col-4 col-md-1">
-                    <input class="form-control" type="number" min="1" placeholder="Quantity" oninput="update_quantity(this);">
+                    <input class="form-control" type="number" min="1" id="Quantity" placeholder="Quantity" oninput="update_quantity(this);">
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Tritanium</label>
+            <div id="Processed">
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Tritanium</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Tritanium-credit" type="number" oninput="update_processed(0);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Tritanium-target" type="number" oninput="update_processed(0);">
+                    </div>
                 </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Tritanium-credit" type="number" oninput="update_processed(0);">
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Pyerite</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Pyerite-credit" type="number" oninput="update_processed(1);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Pyerite-target" type="number" oninput="update_processed(1);">
+                    </div>
                 </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Tritanium-target" type="number" oninput="update_processed(0);">
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Mexallon</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Mexallon-credit" type="number" oninput="update_processed(2);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Mexallon-target" type="number" oninput="update_processed(2);">
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Pyerite</label>
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Isogen</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Isogen-credit" type="number" oninput="update_processed(3);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Isogen-target" type="number" oninput="update_processed(3);">
+                    </div>
                 </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Pyerite-credit" type="number" oninput="update_processed(1);">
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Nocxium</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Nocxium-credit" type="number" oninput="update_processed(4);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Nocxium-target" type="number" oninput="update_processed(4);">
+                    </div>
                 </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Pyerite-target" type="number" oninput="update_processed(1);">
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Zydrine</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Zydrine-credit" type="number" oninput="update_processed(5);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Zydrine-target" type="number" oninput="update_processed(5);">
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Mexallon</label>
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Megacyte</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Megacyte-credit" type="number" oninput="update_processed(6);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Megacyte-target" type="number" oninput="update_processed(6);">
+                    </div>
                 </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Mexallon-credit" type="number" oninput="update_processed(2);">
-                </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Mexallon-target" type="number" oninput="update_processed(2);">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Isogen</label>
-                </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Isogen-credit" type="number" oninput="update_processed(3);">
-                </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Isogen-target" type="number" oninput="update_processed(3);">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Nocxium</label>
-                </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Nocxium-credit" type="number" oninput="update_processed(4);">
-                </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Nocxium-target" type="number" oninput="update_processed(4);">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Zydrine</label>
-                </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Zydrine-credit" type="number" oninput="update_processed(5);">
-                </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Zydrine-target" type="number" oninput="update_processed(5);">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Megacyte</label>
-                </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Megacyte-credit" type="number" oninput="update_processed(6);">
-                </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Megacyte-target" type="number" oninput="update_processed(6);">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-md-1 text-right">
-                    <label>Morphite</label>
-                </div>
-                <div class="col-4 col-md-2">
-                    <input class="form-control form-control-sm text-right" id="Morphite-credit" type="number" oninput="update_processed(7);">
-                </div>
-                <div class="col-4 col-md-2 slash">
-                    <input class="form-control form-control-sm text-right" id="Morphite-target" type="number" oninput="update_processed(7);">
+                <div class="form-row">
+                    <div class="col-3 col-md-1 text-right">
+                        <label>Morphite</label>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <input class="form-control form-control-sm text-right" id="Morphite-credit" type="number" oninput="update_processed(7);">
+                    </div>
+                    <div class="col-4 col-md-2 slash">
+                        <input class="form-control form-control-sm text-right" id="Morphite-target" type="number" oninput="update_processed(7);">
+                    </div>
                 </div>
             </div>
         </form>
@@ -459,7 +461,7 @@
             <p class="small text-right col-md-5 col-11"> 
                 <a href="https://github.com/guyomes/mineopt" class="text-dark">Source</a> |
                 <a href="https://github.com/guyomes/mineopt/issues" class="text-dark">Issues</a> |
-                <a href="https://github.com/guyomes/mineopt/edit/master/data/targets.json">Contribute to expand the list of ships</a>
+                <a href="https://github.com/guyomes/mineopt/edit/master/data/ships.json">Contribute to expand the list of ships</a>
             </p>
         </div>
     </body>

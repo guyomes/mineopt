@@ -37,7 +37,7 @@ glpk.onmessage = (evt) => {
         }
     }
 };
-var targets_list = null;
+var ships_list = null;
 var selected = null;
 var base_yield = null;
 var m3per100units = null;
@@ -116,7 +116,7 @@ var rate = {
   "Mercoxit": 0.3
 }
 
-var target_rate = {
+var ship_rate = {
     "Frigate": 1,
     "Destroyer": 1,
     "Cruiser": 1,
@@ -127,14 +127,14 @@ var target_rate = {
 var capacity = 0;
 var quantity = 1;
 
-async function fill_targets() {
-    targets_list = await fetch("/mineopt/data/targets.json").then(response => response.json());
-    document.getElementById('Targets_list').selectedIndex = 0;
+async function fill_ships() {
+    ships_list = await fetch("/mineopt/data/ships.json").then(response => response.json());
+    document.getElementById('Ships_list').selectedIndex = 0;
 
-    for(i = 0; i < targets_list.length; i++) {
+    for(i = 0; i < ships_list.length; i++) {
         var option = document.createElement('option');
-        var optgroup = document.getElementById(targets_list[i].type);
-        option.text = targets_list[i].name;
+        var optgroup = document.getElementById(ships_list[i].type);
+        option.text = ships_list[i].name;
         option.value = i;
         optgroup.appendChild(option);
     }
@@ -181,12 +181,12 @@ async function init_problem() {
 function update_production(element, type, level) {
     element.setAttribute("value", element.value);
     skills[type][level] = element.value;
-    target_rate[type] = (150 - skills[type]["Basic"] * 6
+    ship_rate[type] = (150 - skills[type]["Basic"] * 6
                              - skills[type]["Advanced"] * 4
                              - skills[type]["Expert"])
                         / 150;
     if(selected && (selected.value >= 0)) {
-        update_target(selected);
+        update_ship(selected);
     }
     backup_skills();
 }
@@ -231,6 +231,7 @@ function update_subjectTo_coef() {
 }
 
 function update_quantity(element) {
+    element.setAttribute("value", element.value);
     var num = element.value == "" ? 1 : element.value;
     var ratio = num/quantity;
     quantity = num;
@@ -240,42 +241,49 @@ function update_quantity(element) {
         update_subjectTo_bnds(i);
     }
     solve();
+    backup_ships();
 }
 
-function update_target(element) {
+function update_ship(element) {
     selected = element;
     if(selected && (selected.value >= 0)) {
         for(let i = 0; i < processed.length; i++) {
-            var num = targets_list[element.value].resources[processed[i]];
-            var mat_eff = targets_list[element.value].material_efficiency;
-            var type = targets_list[element.value].type;
-            document.getElementById(processed[i]+"-target").value = Math.round(num * quantity * target_rate[type] * 150/mat_eff);
+            var num = ships_list[element.value].resources[processed[i]];
+            var mat_eff = ships_list[element.value].material_efficiency;
+            var type = ships_list[element.value].type;
+            var target = document.getElementById(processed[i]+"-target")
+            target.value = Math.round(num * quantity * ship_rate[type] * 150/mat_eff);
+            target.setAttribute("value", target.value);
             update_subjectTo_bnds(i);
         }
     } else {
         for(let i = 0; i < processed.length; i++) {
-            document.getElementById(processed[i]+"-target").value = "";
+            var target = document.getElementById(processed[i]+"-target")
+            target.value = "";
+            target.setAttribute("value", target.value);
             update_subjectTo_bnds(i);
         }
     }
     solve();
+    backup_ships();
 }
 
 function update_processed(num) {
-    document.getElementById('Targets_list').selectedIndex = 0;
+    var credit = document.getElementById(processed[num] + "-credit");
+    var target = document.getElementById(processed[num] + "-target");
+    credit.setAttribute("value", credit.value);
+    target.setAttribute("value", target.value);
+    document.getElementById('Ships_list').selectedIndex = 0;
     selected = null;
     update_subjectTo_bnds(num);
     solve();
+    backup_ships();
 }
 
 function update_subjectTo_bnds(num) {
     var credit = document.getElementById(processed[num] + "-credit").value;
     var target = document.getElementById(processed[num] + "-target").value;
     problem.subjectTo[num].bnds.lb = target - credit;
-}
-
-function update(element) {
-    solve();
 }
 
 function solve() {
@@ -287,6 +295,11 @@ function backup_skills() {
     localStorage.skills = document.getElementById("Skills").innerHTML;
 }
 
+function backup_ships() {
+    localStorage.ships = document.getElementById("Ships").innerHTML;
+    localStorage.selected = document.getElementById("Ships_list").selectedIndex;
+}
+
 function restore_skills() {
     if(localStorage.skills) {
         var form = document.getElementById("Skills")
@@ -296,10 +309,27 @@ function restore_skills() {
             inputs[i].oninput();
         }
     }
+    if(localStorage.ships) {
+        var form = document.getElementById("Ships")
+        var index = localStorage.selected;
+        form.innerHTML = localStorage.ships;
+        var processed = document.getElementById("Processed")
+        var inputs = processed.getElementsByTagName("input");
+        for(let i = 0; i < inputs.length; i++) {
+            inputs[i].oninput();
+        }
+        var value = document.getElementById("Quantity").value;
+        quantity = value == "" ? 1 : value;
+        if(index > 0) {
+            var ships_list = document.getElementById("Ships_list")
+            ships_list.selectedIndex = index;
+            update_ship(ships_list.options[index]);
+        }
+    }
 }
 
 function init() {
-    fill_targets();
+    fill_ships();
     init_problem().then( () => restore_skills());
 }
 
