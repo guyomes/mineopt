@@ -15,6 +15,51 @@
     }
   },
   {
+    "name": "Venture I",
+    "type": "Industrial",
+    "material_efficiency": 150,
+    "resources": {
+      "Tritanium": 26286,
+      "Pyerite":    6332,
+      "Mexallon":   2397,
+      "Isogen":      0,
+      "Nocxium":     0,
+      "Zydrine":      0,
+      "Megacyte":        0,
+      "Morphite":        0
+    }
+  },
+  {
+    "name": "Venture II",
+    "type": "Industrial",
+    "material_efficiency": 150,
+    "resources": {
+      "Tritanium": 127280,
+      "Pyerite":    34598,
+      "Mexallon":   10335,
+      "Isogen":      1500,
+      "Nocxium":     0,
+      "Zydrine":      0,
+      "Megacyte":        0,
+      "Morphite":        0
+    }
+  },
+  {
+    "name": "Venture III",
+    "type": "Industrial",
+    "material_efficiency": 150,
+    "resources": {
+      "Tritanium": 376418,
+      "Pyerite":    102951,
+      "Mexallon":   33482,
+      "Isogen":      5543,
+      "Nocxium":     1581,
+      "Zydrine":      0,
+      "Megacyte":        0,
+      "Morphite":        0
+    }
+  },
+  {
     "name": "Garmur",
     "type": "Frigate",
     "material_efficiency": 150,
